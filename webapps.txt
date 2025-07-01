@@ -1,0 +1,5 @@
+Quran,https://quran.com
+Google,https://www.google.com
+YouTube,https://www.youtube.com
+GitHub,https://github.com
+Stack Overflow,https://stackoverflow.com

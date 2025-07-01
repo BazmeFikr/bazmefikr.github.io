@@ -1,0 +1,35 @@
+[Wisdom]
+[Preserved]
+Quran,https://quran.com/
+Internet Archive,https://archive.org
+Project Gutenberg,https://www.gutenberg.org
+[Distorted]
+Sacred Texts,https://www.sacred-texts.com
+
+[Intelligence]
+World Digital Library,https://www.wdl.org
+dPLA,https://dp.la
+Europeana,https://www.europeana.eu
+
+[Knowledge]
+[Language]
+Open Library,https://openlibrary.org
+Google Books,https://books.google.com
+[History]
+JSTOR,https://www.jstor.org
+[Philosophy]
+Stanford Encyclopedia of Philosophy,https://plato.stanford.edu
+Internet Encyclopedia of Philosophy,https://iep.utm.edu
+[Science]
+PubMed,https://pubmed.ncbi.nlm.nih.gov
+arXiv,https://arxiv.org
+
+[Skill]
+Coursera,https://www.coursera.org
+Khan Academy,https://www.khanacademy.org
+edX,https://www.edx.org
+
+[Earning]
+LinkedIn Learning,https://www.linkedin.com/learning
+Udemy,https://www.udemy.com
+Skillshare,https://www.skillshare.com
