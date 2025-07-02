@@ -27,6 +27,42 @@
     <meta name="theme-color" content="#800020">
     <title>Shakhid's Library</title>
     <style>
+        :root {
+            --color-bg: #fff8e7;
+            --color-main: #fff;
+            --color-text: #333;
+            --color-header-bg: linear-gradient(90deg, #800020 0%, #9a1750 100%);
+            --color-header-text: #fff;
+            --color-nav-bg: linear-gradient(90deg, #ff7b00 0%, #ff9a3c 100%);
+            --color-nav-link: #fff;
+            --color-nav-link-bg: #800020;
+            --color-nav-link-hover-bg: #fff;
+            --color-nav-link-hover: #800020;
+            --color-article-bg: rgba(255,255,255,0.7);
+            --color-article-title: #800020;
+            --color-footer-bg: linear-gradient(90deg, #800020 0%, #9a1750 100%);
+            --color-footer-text: rgba(255,255,255,0.9);
+            --color-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            --color-border: 1px solid rgba(255,123,0,0.1);
+        }
+        body.dark-mode {
+            --color-bg: #18171a;
+            --color-main: #232228;
+            --color-text: #e2e1e7;
+            --color-header-bg: linear-gradient(90deg, #2d1a2e 0%, #3a223a 100%);
+            --color-header-text: #f3e9f7;
+            --color-nav-bg: linear-gradient(90deg, #3a223a 0%, #2d1a2e 100%);
+            --color-nav-link: #e2e1e7;
+            --color-nav-link-bg: #3a223a;
+            --color-nav-link-hover-bg: #e2e1e7;
+            --color-nav-link-hover: #3a223a;
+            --color-article-bg: rgba(40,32,48,0.85);
+            --color-article-title: #ffb347;
+            --color-footer-bg: linear-gradient(90deg, #2d1a2e 0%, #3a223a 100%);
+            --color-footer-text: #e2e1e7;
+            --color-shadow: 0 4px 16px rgba(0,0,0,0.4);
+            --color-border: 1px solid rgba(255,255,255,0.07);
+        }
         html, body {
             height: 100%;
         }
@@ -36,11 +72,13 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            color: #333;
+            color: var(--color-text);
+            background: var(--color-bg);
+            transition: background 0.3s, color 0.3s;
         }
         header {
-            background: linear-gradient(90deg, #800020 0%, #9a1750 100%);
-            color: #fff;
+            background: var(--color-header-bg);
+            color: var(--color-header-text);
             padding: 1.5rem 0 1.1rem 0;
             text-align: center;
             border-bottom: 1.5px solid rgba(255,255,255,0.1);
@@ -59,7 +97,7 @@
             color: rgba(255,255,255,0.9);
         }
         nav {
-            background: linear-gradient(90deg, #ff7b00 0%, #ff9a3c 100%);
+            background: var(--color-nav-bg);
             padding: 0.5rem 0;
             text-align: center;
             display: flex;
@@ -70,14 +108,14 @@
             box-shadow: 0 2px 8px rgba(255,123,0,0.15);
         }
         nav a {
-            color: #fff;
+            color: var(--color-nav-link);
+            background: var(--color-nav-link-bg);
             margin: 0 0.2rem;
             text-decoration: none;
             font-weight: 600;
             display: inline-block;
             padding: 0.4em 1em;
             border-radius: 18px;
-            background: #800020; /* Deep burgundy */
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             border: 1px solid rgba(255,255,255,0.2);
             transition: all 0.2s ease;
@@ -88,41 +126,59 @@
             backdrop-filter: blur(5px);
         }
         nav a:hover, nav a.active {
-            background: #fff;
-            color: #800020;
+            background: var(--color-nav-link-hover-bg);
+            color: var(--color-nav-link-hover);
             box-shadow: 0 4px 12px rgba(128,0,32,0.18);
             transform: translateY(-1px);
             border-color: #800020;
+        }
+        #darkmode-toggle {
+            margin-left: 1em;
+            padding: 0.4em 1.2em;
+            border-radius: 18px;
+            font-weight: 600;
+            font-size: 1em;
+            background: #222;
+            color: #fff;
+            border: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.13);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        body.dark-mode #darkmode-toggle {
+            background: #ffe6a7;
+            color: #2d1a2e;
+        }
+        #darkmode-toggle:hover {
+            background: #333;
         }
         main {
             width: 100%;
             max-width: 800px;
             margin: 2rem auto;
-            background: #fff8e7;
+            background: var(--color-main);
+            color: var(--color-text);
             padding: 2rem;
             border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255,123,0,0.1);
+            box-shadow: var(--color-shadow);
+            border: var(--color-border);
             flex: 1 0 auto;
             display: block;
         }
-        main h1, main h2, main h3 {
-            text-align: center;
-            font-weight: bold;
-        }
         article {
             margin-bottom: 2rem;
-            background: rgba(255,255,255,0.7);
+            background: var(--color-article-bg);
+            color: var(--color-text);
             padding: 1.5rem;
             border-radius: 8px;
             box-shadow: 0 4px 18px 0 rgba(128,0,32,0.10), 0 1.5px 8px 0 rgba(255,123,0,0.07); /* Modern minimal shadow */
         }
         article h2 {
             margin-top: 0;
-            color: #800020;
+            color: var(--color-article-title);
         }
         article a {
-            color: #800020;
+            color: var(--color-article-title);
             text-decoration: none;
             transition: color 0.2s;
         }
@@ -132,8 +188,8 @@
         footer {
             text-align: center;
             padding: 0.7rem 0 0.5rem 0;
-            background: linear-gradient(90deg, #800020 0%, #9a1750 100%);
-            color: rgba(255,255,255,0.9);
+            background: var(--color-footer-bg);
+            color: var(--color-footer-text);
             margin-top: 2rem;
             font-size: 0.98em;
             border-top: 1.5px solid rgba(255,255,255,0.1);
@@ -225,6 +281,54 @@
             object-fit: cover;
             aspect-ratio: 16/9;
         }
+        /* Dark mode for media containers */
+        body.dark-mode .media-container {
+            background: #232228;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+        }
+        body.dark-mode .media-container img {
+            box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+        }
+        /* Dark mode for webapps cards */
+        body.dark-mode .webapp-card {
+            background: #232228 !important;
+            color: #e2e1e7 !important;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.4) !important;
+        }
+        body.dark-mode .webapp-card img {
+            filter: invert(1) brightness(2) contrast(1.5) drop-shadow(0 1px 2px #aaa);
+            background: #fff;
+            padding: 8px;
+            border-radius: 50%;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+            transition: filter 0.2s, background 0.2s;
+        }
+        /* Dark mode for library details and links */
+        body.dark-mode .lib-details {
+            background: #232228 !important;
+            color: #e2e1e7 !important;
+            border-radius: 10px;
+        }
+        body.dark-mode .lib-details a {
+            color: #ffb347 !important;
+        }
+        body.dark-mode .lib-details a:hover {
+            color: #ff7b00 !important;
+        }
+        /* Dark mode for search section */
+        body.dark-mode #main-content ul, body.dark-mode #main-content li, body.dark-mode #main-content p, body.dark-mode #main-content h2 {
+            background: transparent !important;
+            color: #e2e1e7 !important;
+        }
+        body.dark-mode #main-content div {
+            color: #bdb7c6 !important;
+        }
+        body.dark-mode #main-content a {
+            color: #ffb347 !important;
+        }
+        body.dark-mode #main-content a:hover {
+            color: #ff7b00 !important;
+        }
     </style>
 </head>
 <body>
@@ -237,6 +341,7 @@
         <a href="#" id="webapps-link">Webapps</a>
         <a href="#" id="libraries-link">Libraries</a>
         <a href="#" id="search-link">Search</a>
+        <button id="darkmode-toggle" aria-label="Toggle dark mode" style="margin-left:1em;padding:0.4em 1.2em;border-radius:18px;font-weight:600;font-size:1em;background:#222;color:#fff;border:none;box-shadow:0 2px 8px rgba(0,0,0,0.13);cursor:pointer;transition:background 0.2s;">🌙 Dark</button>
     </nav>
     <main id="main-content">
         <!-- Articles will be loaded here dynamically -->
@@ -283,7 +388,7 @@
                         domain = new URL(url).origin;
                     } catch { domain = url; }
                     const favicon = domain + '/favicon.ico';
-                    html += `<div style="width:120px;text-align:center;background:#fff;border-radius:14px;padding:1em 0;box-shadow:0 2px 12px 0 rgba(40,40,40,0.08), 0 1.5px 8px 0 rgba(255,123,0,0.07);cursor:pointer;transition:box-shadow 0.2s;">
+                    html += `<div class="webapp-card" style="width:120px;text-align:center;background:var(--color-main);border-radius:14px;padding:1em 0;box-shadow:0 2px 12px 0 rgba(40,40,40,0.08), 0 1.5px 8px 0 rgba(255,123,0,0.07);cursor:pointer;transition:box-shadow 0.2s;">
                         <a href="${url}" target="_blank" style="display:block;text-decoration:none;color:inherit;">
                             <img src="${favicon}" alt="${name} icon" style="width:48px;height:48px;object-fit:contain;margin-bottom:0.5em;filter:drop-shadow(0 1px 2px #aaa);">
                             <div style="font-size:1em;font-weight:bold;">${name}</div>
@@ -374,10 +479,10 @@
                     }
                 } else {
                     if (categories[cat] && categories[cat].length) {
-                        html += `<details class="lib-details" style=\"margin-bottom:1.5em;\"><summary style=\"font-size:1.2em;font-weight:bold;cursor:pointer;\">${cat}</summary><ul style=\"margin:1em 0 0 1.5em;padding:0;list-style:disc;\">`;
+                        html += `<details class="lib-details" style="margin-bottom:1.5em;background:var(--color-main);"><summary style="font-size:1.2em;font-weight:bold;cursor:pointer;">${cat}</summary><ul style="margin:1em 0 0 1.5em;padding:0;list-style:disc;">`;
                         for (const entry of categories[cat]) {
                             const [name, url] = entry.split(',');
-                            html += `<li style=\"margin-bottom:0.7em;\"><a href=\"${url}\" target=\"_blank\" style=\"font-size:1em;\">${name}</a></li>`;
+                            html += `<li style="margin-bottom:0.7em;"><a href="${url}" target="_blank" style="font-size:1em;">${name}</a></li>`;
                         }
                         html += '</ul></details>';
                     }
@@ -396,54 +501,75 @@
         }
     }
 
+    // Optimized: Paginate article previews for large numbers
+
+    const ARTICLES_PER_PAGE = 10;
+    let allArticleMeta = [];
+    let loadedArticlePreviews = [];
+    let currentArticlePage = 0;
+
     async function fetchArticlePreviews(searchTerm = '', showSearch = true) {
         const main = document.getElementById('main-content');
-        main.innerHTML = `<div id='blog-articles'></div>`;
-        // Dynamically fetch all article files in the articles/ directory
-        let files = [];
-        try {
-            // Try to get the list of files from a manifest, fallback to guessing
-            const res = await fetch('articles/index.txt');
-            if (res.ok) {
-                files = (await res.text()).split('\n').filter(f => f.trim());
-            } else {
-                // Try up to 50 articles, but only include those that exist
-                files = [];
-                for (let i = 1; i <= 50; i++) {
-                    const file = `articles/article${i}.txt`;
-                    try {
-                        const res = await fetch(file, {cache: 'reload'});
-                        if (res.ok) files.push(file);
-                    } catch {}
-                }
-            }
-        } catch {
-            files = [];
-            for (let i = 1; i <= 50; i++) {
-                const file = `articles/article${i}.txt`;
-                try {
-                    const res = await fetch(file, {cache: 'reload'});
-                    if (res.ok) files.push(file);
-                } catch {}
-            }
-        }
-        let articles = [];
-        for (const file of files) {
+        main.innerHTML = `<div id='blog-articles'></div><div id='load-more-container' style='text-align:center;margin:2em 0;'></div>`;
+        // Only fetch the index file for instant load
+        if (!allArticleMeta.length) {
             try {
-                const res = await fetch(file, {cache: 'reload'});
-                if (!res.ok) continue;
-                const text = await res.text();
-                const [titleLine, dateLine, , ...bodyLines] = text.split('\n');
-                const title = titleLine.replace('Title: ', '');
-                const date = dateLine.replace('Date: ', '');
-                const body = bodyLines.join(' ');
-                articles.push({file, title, date, body});
-            } catch {}
+                const res = await fetch('articles/index.txt');
+                if (res.ok) {
+                    // Each line: file,date
+                    allArticleMeta = (await res.text()).split('\n').filter(f => f.trim()).map(line => {
+                        const [file, date] = line.split(',');
+                        return {file: file.trim(), date: (date||'').trim()};
+                    }).sort((a, b) => new Date(b.date) - new Date(a.date));
+                } else {
+                    document.getElementById('blog-articles').innerHTML = '<p>No articles found (missing index.txt).</p>';
+                    return;
+                }
+            } catch {
+                document.getElementById('blog-articles').innerHTML = '<p>No articles found (error loading index.txt).</p>';
+                return;
+            }
         }
-        // Sort by date descending (latest first)
-        articles = articles.filter(a => a.title && a.date).sort((a, b) => new Date(b.date) - new Date(a.date));
+        loadedArticlePreviews = [];
+        currentArticlePage = 0;
+        await loadNextArticlePage();
+    }
+
+    async function loadNextArticlePage() {
+        const start = currentArticlePage * ARTICLES_PER_PAGE;
+        const end = start + ARTICLES_PER_PAGE;
+        const metaToLoad = allArticleMeta.slice(start, end);
+        if (!metaToLoad.length) return;
+        // Fetch only the next batch
+        const texts = await Promise.all(metaToLoad.map(meta => fetch(meta.file, {cache: 'reload'}).then(res => res.ok ? res.text() : null).catch(() => null)));
+        let articles = [];
+        for (let i = 0; i < metaToLoad.length; i++) {
+            const text = texts[i];
+            if (!text) continue;
+            const [titleLine, dateLine, , ...bodyLines] = text.split('\n');
+            const title = titleLine ? titleLine.replace('Title: ', '') : '';
+            const date = dateLine ? dateLine.replace('Date: ', '') : metaToLoad[i].date;
+            const body = bodyLines.join(' ');
+            if (title && date) {
+                articles.push({file: metaToLoad[i].file, title, date, body});
+            }
+        }
+        loadedArticlePreviews = loadedArticlePreviews.concat(articles);
+        renderArticlePreviews();
+        currentArticlePage++;
+        // Show/hide Load More button
+        const loadMoreContainer = document.getElementById('load-more-container');
+        if (currentArticlePage * ARTICLES_PER_PAGE < allArticleMeta.length) {
+            loadMoreContainer.innerHTML = `<button id='load-more-btn' style='background:#ff7b00;color:#fff;border:none;padding:0.7em 2em;border-radius:18px;font-weight:bold;cursor:pointer;box-shadow:0 2px 8px rgba(255,123,0,0.13);font-size:1.1em;'>Load More</button>`;
+            document.getElementById('load-more-btn').onclick = loadNextArticlePage;
+        } else {
+            loadMoreContainer.innerHTML = '';
+        }
+    }
+
+    function renderArticlePreviews() {
         let html = '';
-        for (const a of articles) {
+        for (const a of loadedArticlePreviews) {
             const sentences = a.body.match(/[^.!?\n]+[.!?]+/g) || [];
             const preview = sentences.slice(0, 2).join(' ');
             html += `<article><h2><a href="#" class="article-link" data-file="${a.file}">${a.title}</a></h2><p><em>${a.date}</em></p><p>${preview}...</p></article>`;
@@ -556,6 +682,32 @@
             </ul>
         `;
     }
+
+    // Dark mode logic
+    const darkToggle = document.getElementById('darkmode-toggle');
+    function setDarkMode(on) {
+        if (on) {
+            document.body.classList.add('dark-mode');
+            darkToggle.textContent = '☀️ Light';
+            localStorage.setItem('darkMode', '1');
+        } else {
+            document.body.classList.remove('dark-mode');
+            darkToggle.textContent = '🌙 Dark';
+            localStorage.setItem('darkMode', '0');
+        }
+    }
+    // Initial mode from system or localStorage
+    (function() {
+        let dark = localStorage.getItem('darkMode');
+        if (dark === null) {
+            dark = window.matchMedia('(prefers-color-scheme: dark)').matches ? '1' : '0';
+        }
+        setDarkMode(dark === '1');
+    })();
+    darkToggle.onclick = function() {
+        setDarkMode(!document.body.classList.contains('dark-mode'));
+    };
+
     </script>
     <footer>
         &copy; 2025 Shakhid. All rights reserved.
