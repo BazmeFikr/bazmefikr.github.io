@@ -355,8 +355,8 @@
         <!-- Articles will be loaded here dynamically -->
     </main>
     <script>
-    // Fetch and display article previews on page load
-    window.addEventListener('DOMContentLoaded', () => fetchArticlePreviews('', false));
+    // Fetch and display article previews or article on page load
+    document.addEventListener('DOMContentLoaded', handleHashRouting);
 
     document.getElementById('myblog-link').addEventListener('click', function(e) {
         e.preventDefault();
@@ -577,20 +577,45 @@
 
     function renderArticlePreviews() {
         let html = '';
-        for (const a of loadedArticlePreviews) {
+        for (let i = 0; i < loadedArticlePreviews.length; i++) {
+            const a = loadedArticlePreviews[i];
+            const slug = `a/${i+1}`; // oldest is a/1, latest is a/N
             const sentences = a.body.match(/[^.!?\n]+[.!?]+/g) || [];
             const preview = sentences.slice(0, 2).join(' ');
-            html += `<article><h2><a href="#" class="article-link" data-file="${a.file}">${a.title}</a></h2><p><em>${a.date}</em></p><p>${preview}...</p></article>`;
+            html += `<article><h2><a href="#/${slug}" class="article-link" data-slug="${slug}" data-idx="${i}">${a.title}</a></h2><p><em>${a.date}</em></p><p>${preview}...</p></article>`;
         }
         document.getElementById('blog-articles').innerHTML = html || '<p>No articles found.</p>';
         document.querySelectorAll('.article-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
-                const file = this.getAttribute('data-file');
-                showFullArticle(file);
+                window.location.hash = `#/${this.getAttribute('data-slug')}`;
             });
         });
     }
+
+    // Handle hash changes for article navigation
+    window.addEventListener('hashchange', handleHashRouting);
+
+    function handleHashRouting() {
+        const hash = window.location.hash;
+        if (hash.startsWith('#/a/')) {
+            // Short link: extract index (1-based)
+            const idx = parseInt(hash.split('/')[2], 10) - 1;
+            if (loadedArticlePreviews.length) {
+                if (loadedArticlePreviews[idx]) showFullArticle(loadedArticlePreviews[idx].file);
+                else document.getElementById('main-content').innerHTML = '<p>Article not found.</p>';
+            } else {
+                // If previews not loaded yet, load them first
+                fetchArticlePreviews('', false).then(() => {
+                    if (loadedArticlePreviews[idx]) showFullArticle(loadedArticlePreviews[idx].file);
+                    else document.getElementById('main-content').innerHTML = '<p>Article not found.</p>';
+                });
+            }
+        } else {
+            fetchArticlePreviews('', false);
+        }
+    }
+
 
     async function showFullArticle(file) {
         const main = document.getElementById('main-content');
@@ -660,7 +685,11 @@
                     <div style=\"margin-top:1.5em;\">${body}</div>
                 </article>
                 <button id=\"back-btn\" style=\"margin-top:2em;background:#800020;color:#fff;border:none;padding:0.7em 1.5em;border-radius:18px;font-weight:bold;cursor:pointer;box-shadow:0 2px 8px rgba(128,0,32,0.13);\">&larr; Back to articles</button>`;
-            document.getElementById('back-btn').onclick = fetchArticlePreviews;
+            document.getElementById('back-btn').onclick = function() {
+                // Remove hash and reload as usual (no hash link)
+                history.replaceState(null, '', location.pathname + location.search);
+                fetchArticlePreviews('', false);
+            };
         } catch {
             main.innerHTML = '<p>Article not found.</p>';
         }
