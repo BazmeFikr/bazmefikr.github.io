@@ -355,6 +355,15 @@
         <!-- Articles will be loaded here dynamically -->
     </main>
     <script>
+    // Register service worker for App Shell (index.html) caching
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js').catch(function(err) {
+          // Registration failed
+          console.warn('ServiceWorker registration failed:', err);
+        });
+      });
+    }
     // Fetch and display article previews or article on page load
     document.addEventListener('DOMContentLoaded', handleHashRouting);
 
