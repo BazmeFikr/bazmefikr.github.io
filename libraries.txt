@@ -1,10 +1,18 @@
 [Wisdom]
-[Preserved]
-Quran,https://quran.com/
-Internet Archive,https://archive.org
-Project Gutenberg,https://www.gutenberg.org
-[Distorted]
-Sacred Texts,https://www.sacred-texts.com
+  [Preserved]
+    [Revelation]
+    Quran,https://quran.com/
+    Quran Corpus,https://corpus.quran.com/
+    Sunnah,https://sunnah.com/
+    Thaqalyn,https://thaqalayn.net/
+    Qaalarasulallah,https://qaalarasulallah.com/
+    
+    [Reflection]
+    Altafsir,https://www.altafsir.com/
+    Noormags,https://www.noormags.ir/view/en/default
+
+  [Distorted]
+  Sacred Texts,https://www.sacred-texts.com
 
 [Intelligence]
 World Digital Library,https://www.wdl.org
@@ -12,17 +20,20 @@ dPLA,https://dp.la
 Europeana,https://www.europeana.eu
 
 [Knowledge]
-[Language]
-Open Library,https://openlibrary.org
-Google Books,https://books.google.com
-[History]
-JSTOR,https://www.jstor.org
-[Philosophy]
-Stanford Encyclopedia of Philosophy,https://plato.stanford.edu
-Internet Encyclopedia of Philosophy,https://iep.utm.edu
-[Science]
-PubMed,https://pubmed.ncbi.nlm.nih.gov
-arXiv,https://arxiv.org
+  [Language]
+  Open Library,https://openlibrary.org
+  Google Books,https://books.google.com
+
+  [History]
+  JSTOR,https://www.jstor.org
+  
+  [Philosophy]
+  Stanford Encyclopedia of Philosophy,https://plato.stanford.edu
+  Internet Encyclopedia of Philosophy,https://iep.utm.edu
+  
+  [Science]
+  PubMed,https://pubmed.ncbi.nlm.nih.gov
+  arXiv,https://arxiv.org
 
 [Skill]
 Coursera,https://www.coursera.org
