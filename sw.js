@@ -1,5 +1,5 @@
 // sw.js - Minimal App Shell Service Worker for index.html
-const CACHE_NAME = 'app-shell-v1';
+const CACHE_NAME = 'app-shell-v2';
 const APP_SHELL = [
   '/',
   '/index.html',
